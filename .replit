@@ -1,0 +1,14 @@
+language = "c#"
+run = "cd mvc && dotnet run --urls=http://0.0.0.0:3000"
+modules = ["dotnet-7.0", "web", "bash", "nodejs-20"]
+
+[nix]
+channel = "stable-25_05"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[[ports]]
+localPort = 8000
+externalPort = 8000

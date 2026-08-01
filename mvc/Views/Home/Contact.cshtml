@@ -1,0 +1,125 @@
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<style>
+@@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+    body {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 14px;
+    }
+
+    .contact-frame {
+        width: 60%;
+        max-width: 500px;
+        background: #fff;
+        color: #212529;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,.15);
+        padding: 1.25rem;
+    }
+
+    .contact-frame .form-label {
+        font-weight: 600;
+        font-size: 13px;
+        margin-bottom: .25rem;
+    }
+
+    .contact-frame .form-control {
+        font-size: 13px;
+        padding: .35rem .65rem;
+    }
+
+    .contact-frame textarea {
+        resize: none;
+    }
+
+    .contact-frame input::placeholder,
+    .contact-frame textarea::placeholder {
+        font-size: 11px;
+    }
+
+    .contact-frame .mb-3,
+    .contact-frame .mb-4 {
+        margin-bottom: .75rem !important;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        font-size: 12px;
+    }
+</style>
+
+<div class="container container mt-3 mb-3">
+    <h5 class="text-center mb-4">@ViewData["Title"]</h5>
+
+    <p class="text-center text-muted mb-4">
+        Have a question or suggestion? We'd love to hear from you. Fill out the form below and we'll respond as soon as possible.
+    </p>
+
+    <div class="d-flex justify-content-center">
+        <div class="contact-frame">
+
+            <form method="post">
+
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="fullName"
+                           name="FullName"
+                           placeholder="Enter your name"
+                           required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           name="Email"
+                           placeholder="name@example.com"
+                           required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text"
+                           class="form-control"
+                           id="subject"
+                           name="Subject"
+                           placeholder="What is this regarding?"
+                           required />
+                </div>
+
+                <div class="mb-4">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control"
+                              id="message"
+                              name="Message"
+                              rows="2"
+                              placeholder="Type your message here..."
+                              required></textarea>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3">
+                    <button type="submit" class="btn btn-sm btn-success px-4">
+                        Send Message
+                    </button>
+
+                    <button type="reset" class="btn btn-sm btn-outline-secondary px-4">
+                        Clear Form
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

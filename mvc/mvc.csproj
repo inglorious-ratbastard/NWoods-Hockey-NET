@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <UserSecretsId>aspnet-mvc-9191D1B6-6603-442F-951C-F6BA4A5D44A4</UserSecretsId>
+    <RootNamespace>MvcSample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.13" />
+  </ItemGroup>
+
+</Project>

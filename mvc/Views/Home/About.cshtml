@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "About This Website";
+}
+
+<style>
+@@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+    body {
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 14px;
+    }
+
+    .about-frame {
+        width: 75%;
+        max-width: 900px;
+        height: 400px;
+        overflow-y: auto;
+        padding: 2rem;
+        background: #fff;
+        color: #212529;
+        border: 2px solid #dee2e6;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        text-align: left;
+    }
+
+    .about-frame h5 {
+        margin-top: 1.75rem;
+    }
+
+    .about-frame h5:first-child {
+        margin-top: 0;
+    }
+</style>
+
+<div class="container mt-3 mb-5 pb-5">
+    <h5 class="text-center mb-4">@ViewData["Title"]</h5>
+    
+    <p class="text-center text-muted">
+        Learn more about this website, its purpose, and the resources it provides for the local hockey community.
+    </p>
+
+    <div class="about-frame mx-auto text-center">
+
+        <h6>Welcome</h6>
+        <p>
+            Welcome to our Northwoods Ice community website. This website was created to provide
+            visitors with an easy way to explore the rink, learn about its amenities, and discover
+            helpful information before visiting. Our goal is to offer a clean, modern, and
+            user-friendly experience for hockey players, families, and skating enthusiasts.
+        </p>
+
+        <h6>Our Mission</h6>
+        <p>
+            We believe local ice rinks play an important role in bringing communities together.
+            Whether you're looking for public skating, youth hockey, tournaments, or simply want to
+            learn more about the facility, this website serves as a convenient starting point for
+            finding general information and useful resources.
+        </p>
+
+        <h6>Website Features</h6>
+        <p>
+            This website includes information about rink amenities, facility highlights, community
+            resources, and convenient navigation to help visitors quickly locate what they need.
+            Additional pages provide contact information, privacy details, website terms, and links
+            to official resources when appropriate.
+        </p>
+
+        <h6>Independent Resource</h6>
+        <p>
+            This website is an independent informational project and is not affiliated with,
+            endorsed by, or operated by Northwoods Ice. References to Northwoods Ice are provided
+            solely for informational purposes. Visitors seeking official schedules, reservations,
+            pricing, or announcements should consult the official Northwoods Ice website.
+        </p>
+
+        <h6>Built With</h6>
+        <p>
+            This website was developed using ASP.NET Core MVC, Bootstrap 5, HTML5, CSS3, and modern
+            responsive web design practices. It is designed to provide an accessible experience
+            across desktop computers, tablets, and mobile devices.
+        </p>
+
+        <h6>Future Improvements</h6>
+        <p>
+            As the website continues to evolve, additional features may include event calendars,
+            public skating schedules, tournament information, interactive maps, photo galleries,
+            and other enhancements designed to improve the visitor experience.
+        </p>
+
+        <h6>Thank You</h6>
+        <p>
+            Thank you for taking the time to visit this website. We hope it serves as a helpful
+            resource for learning more about Northwoods Ice and the local hockey community. We
+            appreciate your feedback and welcome suggestions for future improvements.
+        </p>
+
+    </div>
+</div>

@@ -1,0 +1,503 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+@@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+    body {
+         font-family: "Source Sans 3", sans-serif;
+    }
+    
+    #NWSlide .carousel-item img {
+        width: 100%;
+        height: 600px;
+        max-height: 600px;
+        object-fit: cover;
+    }
+
+    #NWSlide .carousel-caption {
+        color: #fff;
+        text-shadow:
+        1px 1px 4px rgba(0, 0, 0, 0.6),
+        0 0 8px rgba(0, 0, 0, 0.4);
+        bottom: 50px;
+    }
+
+    #NWSlide .carousel-caption h1,
+    #NWSlide .carousel-caption h2,
+    #NWSlide .carousel-caption h3,
+    #NWSlide .carousel-caption h4,
+    #NWSlide .carousel-caption h5,
+    #NWSlide .carousel-caption h6 {
+        font-weight: 700;
+    }
+
+    #skate-card .card-title,
+    #hockey-card .card-title {
+        font-size: 16px;
+    }
+
+    #skate-card {
+        background:
+            linear-gradient(rgba(13, 110, 253, 0.55), rgba(13, 110, 253, 0.55)),
+            url('https://media.digitalindigenous.ca/feature-images/public-skating-medium-1766093548316.jpg');
+        background-size: cover;
+        background-position: center;
+        font-size: 14px;
+    }
+
+    #hockey-card {
+        background:
+            linear-gradient(rgba(25, 135, 84, 0.55), rgba(25, 135, 84, 0.55)),
+            url('https://media.istockphoto.com/id/928532470/photo/moment-in-the-game-when-played-washer.jpg');
+        font-size: 14px;
+    }
+
+    .hero-banner {
+        position: relative;
+        height: 600px;
+        overflow: hidden;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0,0,0,.25);
+        text-align: center;
+    }
+
+    .hero-title {
+        color: #fff;
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(1.35rem, 3vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: .2rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        animation: fadeUp 1.5s ease-out forwards;
+    }
+
+    .hero-subtitle {
+        color: #fff;
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+        margin-top: 15px;
+        opacity: 0;
+        animation: fadeUp 1.5s ease-out .6s forwards;
+    }
+
+    @@keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    } 
+
+    .schedule-button-container {
+        border-width: 3px !important;
+        background: linear-gradient(270deg, #0d6efd, #6f42c1, #dc3545);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+    }
+
+    @@keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    #community .card-title {
+        font-size: 15px;
+    }
+
+    #rink-card, 
+    #view-card, 
+    #shop-card,
+    #food-card, 
+    #locker-card {
+        transition: all 0.3s ease;
+    }
+
+    #rink-card:hover, 
+    #view-card:hover,
+    #shop-card:hover,
+    #food-card:hover,
+    #locker-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.35);
+    }
+
+    #rink-card {
+        background:
+            linear-gradient(rgba(13, 110, 253, 0.55), rgba(13, 110, 253, 0.55)),
+            url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkT6VtYwCGP3hnXiHrdXPX9HoEegJkgB90BYlGciz7ywry-U80NbkpaIg&s=10');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 14px;
+    }
+
+    #view-card {
+        background:
+            linear-gradient(rgba(13, 110, 253, 0.55), rgba(13, 110, 253, 0.55)),
+            url('https://s3-media0.fl.yelpcdn.com/bphoto/Dh2B0um_wjDQL8fZ7ghEhQ/348s.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 14px;
+    }
+
+    #shop-card {
+        background:
+            linear-gradient(rgba(25, 135, 84, 0.55), rgba(25, 135, 84, 0.55)),
+            url('https://cdn2.sportngin.com/attachments/photo/e54f-115386419/Pro_Shop_-_December_2018_1_large.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 14px;
+    }
+
+    #food-card {
+        background:
+            linear-gradient(rgba(25, 135, 84, 0.55), rgba(25, 135, 84, 0.55)),
+            url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/0d/3d/89/caption.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 14px;
+    }
+
+    #locker-card {
+        background:
+            linear-gradient(rgba(25, 135, 84, 0.55), rgba(25, 135, 84, 0.55)),
+            url('https://media.kare11.com/assets/KARE/images/defd6475-4d8c-42c4-97f8-0546e797f0c3/defd6475-4d8c-42c4-97f8-0546e797f0c3_1920x1080.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 14px;
+    }
+
+    #combox a {
+        font-size: 14px;
+    }
+</style>
+
+<div class="container-fluid pb-0"> 
+    <div id="NWSlide" class="carousel slide mx-auto">
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#NWSlide" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#NWSlide" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#NWSlide" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner rounded">
+            <div class="carousel-item active">
+                <img src="https://static.where-e.com/United_States/Ice-Golf-Center-At-Northwoods_356cbfaa9661005fbe16da0db23b0a77.jpg" class="d-block w-100" alt="..." >
+                <div class="carousel-caption d-none d-md-block text-light">
+                    <h6>Where Hockey Lives</h6>
+                    <p>From first skates to championship games, Northwoods brings players and families together on the ice.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://static.where-e.com/United_States/Ice-Golf-Center-At-Northwoods_6ebefdebd97eaec3bb777bebf6e69afe.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block text-light">
+                    <h6>Programs For Every Player</h6>
+                    <p>Whether you're learning the basics or chasing your next goal, there's a place for you here.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://paisano-online.com/wp-content/uploads/2025/11/7L2A7913-1.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block text-light">
+                    <h6>Join The Northwoods Family</h6>
+                    <p>Stay connected with events, leagues, tournaments, and everything happening at the rink</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#NWSlide" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#NWSlide" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+</div>
+
+<div id="public" class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <h6 class="text-center">Open Ice Schedule</h6>
+
+            <div class="card mt-4 bg-secondary">
+                <div class="card-body p-0">
+                    <ol class="list-group">
+                      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">Public Skating</div>
+                           Everyday
+                        </div>
+                        <span class="badge text-bg-primary rounded-pill">12:30 PM – 3:00 PM </span>
+                      </li>
+                      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">Public Skating</div>
+                          Wednesday - Sunday
+                        </div>
+                        <span class="badge text-bg-primary rounded-pill">6:30 PM -8:30 PM</span>
+                      </li>
+                      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">Public Skating</div>
+                          Daily (New!)
+                        </div>
+                        <span class="badge text-bg-primary rounded-pill">6:30 PM – 9:00 PM</span>
+                      </li>
+                      <li class="list-group-item list-group-item-light d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">Skating Schedule</div>
+                          Check the <u>Public Schedule</u> Below
+                        </div>
+                       </li>
+                    </ol>
+                </div>
+
+                <div class="card-footer bg-white text-center">
+                    <a href="https://northwoods.finnlyconnect.com/registration/activitylist" class="btn btn-info">
+                        View All Activities
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 text-center">
+            <h6>Northwoods Programs</h6>
+            <div id="skate-card" class="card w-75 mt-4 mb-3 mx-auto bg-info text-light">
+              <div class="card-body">
+                <h5 class="card-title">Skating</h5>
+                <p class="card-text">For fun, to learn, or to practice for competition, we have the ice.</p>
+                <a href="https://northwoodsice.net/public-skating/" class="btn btn-outline-light fs-6">Northwoods Skating</a>
+              </div>
+            </div>
+
+            <div id="hockey-card" class="card w-75 mx-auto bg-success text-light">
+              <div class="card-body">
+                <h5 class="card-title">Hockey</h5>
+                <p class="card-text">Pass the puck and huddle up. Plug into our in-house youth or adult league for recreational and competitive ice action on our standard-size rink.</p>
+                <a href="https://northwoodsice.net/youth-hockey-leagues/" class="btn btn-outline-light fs-6">Northwoods Hockey</a>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="schedule" class="container bg-light text-dark text-center mt-5 mb-5">
+    <div class="ratio ratio-16x9">
+        <iframe
+            src="https://northwoods.finnlyconnect.com/schedule/126"
+            title="Northwoods Ice Facility Schedule"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+     <div class="d-flex justify-content-center mt-4">
+         <div class="schedule-button-container border border-light rounded p-5 d-flex justify-content-center gap-3 w-75">
+             <a href="https://northwoods.finnlyconnect.com/schedule/126"
+                target="_blank"
+                class="btn btn-outline-light">
+                 View Full Schedule
+             </a>
+         </div>
+     </div>
+</div>
+
+<div id="open-ice" class="container-fluid mt-5 mb-5 p-0 hero-banner">
+    <img
+        src="https://us1-photo.nextdoor.com/business_gallery/61/d1/61d18710b118cc2ed2299fb1aded22bc.jpg"
+        class="w-100 h-100 hero-image"
+        alt="Open Hockey Ice">
+
+    <div class="hero-overlay">
+        <h1 class="hero-title">Welcome to the Ice</h1>
+        <p class="hero-subtitle">
+            Skate • Train • Compete
+        </p>
+
+        <div class="hero-buttons d-flex justify-content-center gap-5 mt-5">
+            <a href="https://northwoodsice.net/youth-hockey-leagues/"
+               class="btn btn-info opacity-75 px-5"
+               role="button">
+                Find a League
+            </a>
+
+            <a href="https://northwoodsice.net/learn-to-skate/"
+               class="btn btn-outline-light px-5"
+               role="button">
+                Learn to Skate
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<div id="learn" class="container text-center mt-5 mb-5">
+  <div class="row justify-content-center text-dark">
+    <div class="col-lg-6">
+      <div class="card bg-light">
+        <div class="card-body">
+          <h6 class="card-title text-bold">Unlock Your Hockey Potential</h6>
+          <p class="card-text">
+              Learning to skate for hockey starts with building balance, control, and confidence on the ice. Practice smooth strides, controlled stops, and tight turns before adding speed or handling a puck. Focus on proper posture, edge control, and quick transitions to improve agility. With regular practice and patience, skating becomes more natural, allowing you to move efficiently and keep up with the pace of the game.
+          </p>
+          <a href="https://northwoodsice.net/hockey-learn-to-skate/" class="btn btn-outline-success mt-3">Start Learning</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <img src="https://www.fvia.us/wp-content/uploads/2025/11/website-3.jpeg" class="rounded img-fluid w-50 mb-5" alt="...">
+    </div>
+  </div>
+</div>
+
+<hr style="border: 0; height: 3px; background-color: green;">
+
+<div id="adult" class="container text-center mt-5 mb-5">
+    <div class="row text-dark align-items-start">
+
+        <div class="col-lg-6">
+            <p class="card-text">
+                Adult hockey leagues deliver action for every skill level. A Div and B Div feature experienced players seeking fast-paced games, strong teamwork, and challenging play. Test your skills, compete hard, and enjoy the thrill of the ice...
+            </p>
+
+            <p class="card-text">
+                BHL and Rink Rats leagues help newer players grow through supportive gameplay. C Div and D Div focus on skill development, confidence, and fun while building hockey knowledge, improving technique, and creating a welcoming path onto ice.
+            </p>
+          <div class="container text-center">
+             <p>
+               <button class="btn btn-info text-light p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                Hit the Ice Now
+               </button>
+             </p>
+             <div class="d-flex justify-content-center" style="min-height: 120px;">
+               <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                 <div class="card card-body text-bold" style="width: 300px; font-size: 12px;">
+                     Come to one of the Drop-In Hockey or Stick & Puck sessions. Drop-In requires full equipment and is a full scrimmage. Stick & Puck is practice only and requires only a helmet, stick, and gloves. No organized play is allowed during Stick & Puck sessions. Remember to bring your own puck!
+                 </div>
+               </div>
+             </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 pt-3 pb-4 d-flex justify-content-center">
+            <div class="image-container" style=" position: sticky; top: 20px;">
+                <img src="https://oakparkicerink.com/wp-content/uploads/2019/05/Adult-League_1920x1080.jpg"
+                     class="rounded img-fluid w-75"
+                     alt="...">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="community" class="container-fluid bg-dark text-light text-center mt-5 mb-5" style="opacity: 0.8;">
+    <div class="row justify-content-center g-4">
+      <h6>Join the Hockey Community</h6>
+        <div class="col-md-4 col-lg-5">
+            <div id="rink-card" class="card bg-info text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Dual Ice Rinks</h5>
+                    <p class="card-text">
+                         Enjoy two full-size ice rinks designed for league play, tournaments, public skating, and practices. With quality ice, modern facilities, and flexible scheduling, players of every age and skill level can enjoy a first-class skating experience all year long.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-5">
+            <div id="view-card" class="card bg-info text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Spectator Balcony</h5>
+                    <p class="card-text">
+                         Relax in our spacious elevated balcony and enjoy an excellent view of every game on the ice. Comfortable seating, clear sightlines, and convenient access to concessions make it the perfect place for families and fans to cheer together.
+                    </p> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center g-4 mt-4  ">
+        <div class="col-md-4 col-lg-4">
+            <div id="shop-card" class="card bg-success text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Pro Shop</h5>
+                    <p class="card-text">
+                        Find everything you need before hitting the ice, from sticks and skates to protective gear and accessories. Our knowledgeable staff can help you choose equipment that fits your game and your budget.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+            <div id="food-card" class="card bg-success text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Concession Stand</h5>
+                    <p class="card-text">
+                        Grab a hot meal, refreshing drink, or quick snack without missing the action. Our concession stand offers fan favorites, fresh coffee, and plenty of options to keep players and spectators energized.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+            <div id="locker-card" class="card bg-success text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Locker Rooms</h5>
+                    <p class="card-text">
+                         Clean, spacious locker rooms provide a comfortable place to prepare before games and unwind afterward. Secure storage, ample seating, and convenient access to the rinks make every visit more enjoyable.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+      <div id="combox" class="col-12 mt-5 d-flex justify-content-center mb-5 py-3">
+          <div class="border border-light rounded p-5 bg-dark d-flex justify-content-center gap-3 w-75" style="border-width: 3px !important;">
+              <div class="col-4">
+                <a href="https://northwoodsice.net/parties/" class="btn btn-success p-2">Book Your Event</a>
+              </div>
+              <div class="col-4">
+                <a href="https://northwoodsice.net/amenities/" class="btn btn-outline-light p-2">View Amenities</a>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+</div>
