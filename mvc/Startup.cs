@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcSample.Data;
+
 
 
 namespace MvcSample {
@@ -28,9 +30,12 @@ namespace MvcSample {
                     "DataProtectionKeys")))
         .SetApplicationName("MvcSample");
       
-      services.AddDefaultIdentity<IdentityUser>();
-
-      services.AddSingleton<IUserStore<IdentityUser>>(MemoryUserStore.Instance);
+      services.AddDefaultIdentity<IdentityUser>(options =>
+      {
+          options.SignIn.RequireConfirmedAccount = false;
+      })
+      .AddRoles<IdentityRole>()
+      .AddEntityFrameworkStores<ApplicationDbContext>();
 
       if (Environment.GetEnvironmentVariable("REPLIT_SUPPORT") == "1") {
         Console.Error.WriteLine("Enabling Replit.com IFrame Support.");
@@ -61,28 +66,56 @@ namespace MvcSample {
       });
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-      app.UseForwardedHeaders();
+    public void Configure(
+      IApplicationBuilder app,
+      IWebHostEnvironment env,
+      IServiceProvider serviceProvider)
+    {
+      using(var scope = serviceProvider.CreateScope())
+      {
+          var userManager =
+              scope.ServiceProvider
+              .GetRequiredService<UserManager<IdentityUser>>();
 
-      if (env.IsDevelopment()) {
-        app.UseDeveloperExceptionPage();
-      } else {
-        app.UseExceptionHandler("/Home/Error");
+          var roleManager =
+              scope.ServiceProvider
+              .GetRequiredService<RoleManager<IdentityRole>>();
+
+
+          IdentitySeeder.SeedAsync(
+              userManager,
+              roleManager)
+              .Wait();
       }
 
-      // app.UseHttpsRedirection();
+      app.UseForwardedHeaders();
+
+
+      if (env.IsDevelopment())
+      {
+          app.UseDeveloperExceptionPage();
+      }
+      else
+      {
+          app.UseExceptionHandler("/Home/Error");
+      }
+
       app.UseStaticFiles();
 
       app.UseRouting();
 
       app.UseAuthentication();
+
       app.UseAuthorization();
 
-      app.UseEndpoints(endpoints => {
-        endpoints.MapControllerRoute(
-          name: "default",
-          pattern: "{controller=Home}/{action=Index}/{id?}");
-        endpoints.MapRazorPages();
+
+      app.UseEndpoints(endpoints =>
+      {
+          endpoints.MapControllerRoute(
+              name: "default",
+              pattern: "{controller=Home}/{action=Index}/{id?}");
+
+          endpoints.MapRazorPages();
       });
     }
   }
