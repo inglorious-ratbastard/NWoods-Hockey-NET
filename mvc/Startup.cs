@@ -83,25 +83,23 @@ namespace MvcSample {
       IWebHostEnvironment env,
       IServiceProvider serviceProvider)
     {
-      using(var scope = serviceProvider.CreateScope())
+      using (var scope = serviceProvider.CreateScope())
       {
-          var userManager =
-              scope.ServiceProvider
+          var db = scope.ServiceProvider
+              .GetRequiredService<ApplicationDbContext>();
+
+          db.Database.Migrate();
+
+          var userManager = scope.ServiceProvider
               .GetRequiredService<UserManager<IdentityUser>>();
 
-          var roleManager =
-              scope.ServiceProvider
+          var roleManager = scope.ServiceProvider
               .GetRequiredService<RoleManager<IdentityRole>>();
 
-
-          IdentitySeeder.SeedAsync(
-              userManager,
-              roleManager)
-              .Wait();
+          IdentitySeeder.SeedAsync(userManager, roleManager).Wait();
       }
 
       app.UseForwardedHeaders();
-
 
       if (env.IsDevelopment())
       {
@@ -119,7 +117,6 @@ namespace MvcSample {
       app.UseAuthentication();
 
       app.UseAuthorization();
-
 
       app.UseEndpoints(endpoints =>
       {
