@@ -2,15 +2,19 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
 <ul class="navbar-nav">
 
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
         <a class="nav-link text-light mr-2 mt-1"
-           asp-controller="Account"
-           asp-action="LoginRegister">
-            Hello @User.Identity.Name!
+           asp-controller="Home"
+           asp-action="Profile">
+           <ins>@currentUser?.UserName</ins>
         </a>
     </li>
 

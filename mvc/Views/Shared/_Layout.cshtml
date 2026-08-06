@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Identity
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,18 +65,36 @@
     <header style="font-size: 14px;">
         <nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom box-shadow" style="opacity: 0.9; z-index: 1050;">
             <div class="container">
-                <a class="navbar-brand text-light d-flex align-items-center"
-                   asp-area=""
-                   asp-controller="Home"
-                   asp-action="Index"
-                   style="font-size: 14px;">
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a class="navbar-brand text-light d-flex align-items-center"
+                       asp-area=""
+                       asp-controller="Home"
+                       asp-action="Main"
+                       style="font-size: 14px;">
 
-                    <img src="https://images.seeklogo.com/logo-png/6/2/ice-hockey-logo-png_seeklogo-69481.png"
-                         alt="Northwoods Ice Hockey Logo"
-                         style="height: 32px; width: auto; margin-right: 8px;">
+                        <img src="https://images.seeklogo.com/logo-png/6/2/ice-hockey-logo-png_seeklogo-69481.png"
+                             alt="Northwoods Ice Hockey Logo"
+                             style="height: 32px; width: auto; margin-right: 8px;">
 
-                    <span class="text-nowrap">Northwoods Ice Hockey</span>
-                </a>
+                        <span class="text-nowrap">Northwoods Ice Hockey</span>
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand text-light d-flex align-items-center"
+                       asp-area=""
+                       asp-controller="Home"
+                       asp-action="Index"
+                       style="font-size: 14px;">
+
+                        <img src="https://images.seeklogo.com/logo-png/6/2/ice-hockey-logo-png_seeklogo-69481.png"
+                             alt="Northwoods Ice Hockey Logo"
+                             style="height: 32px; width: auto; margin-right: 8px;">
+
+                        <span class="text-nowrap">Northwoods Ice Hockey</span>
+                    </a>
+                }
 
                 <button class="navbar-toggler bg-success py-0 px-1 border-0"
                         type="button"
@@ -89,27 +109,42 @@
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-success" asp-area="" asp-controller="Home" asp-action="Index" style="color: #55DD33 !important;">
-                                Home
-                            </a>
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-link text-success"
+                                   asp-controller="Home"
+                                   asp-action="Main"
+                                   style="color:#55DD33 !important;">
+                                    Home
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-success"
+                                   asp-controller="Home"
+                                   asp-action="Index"
+                                   style="color:#55DD33 !important;">
+                                    Home
+                                </a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Games">
                                 Gameday
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Teams">
                                 Teams
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Scores">
                                 Scores
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Stats">
                                 Statistics
                             </a>
                         </li>

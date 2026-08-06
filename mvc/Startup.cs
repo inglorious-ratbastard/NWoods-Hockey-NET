@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcSample.Data;
-
 
 
 namespace MvcSample {
@@ -30,12 +30,24 @@ namespace MvcSample {
                     "DataProtectionKeys")))
         .SetApplicationName("MvcSample");
       
+      services.AddDbContext<ApplicationDbContext>(options =>
+      {
+          options.UseSqlite(
+              Configuration.GetConnectionString("DefaultConnection"));
+      });
+
       services.AddDefaultIdentity<IdentityUser>(options =>
       {
           options.SignIn.RequireConfirmedAccount = false;
       })
       .AddRoles<IdentityRole>()
       .AddEntityFrameworkStores<ApplicationDbContext>();
+
+      services.ConfigureApplicationCookie(options =>
+      {
+          options.LoginPath = "/Account/LoginRegister";
+          options.AccessDeniedPath = "/Account/LoginRegister";
+      });
 
       if (Environment.GetEnvironmentVariable("REPLIT_SUPPORT") == "1") {
         Console.Error.WriteLine("Enabling Replit.com IFrame Support.");

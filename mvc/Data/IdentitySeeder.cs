@@ -9,17 +9,16 @@ namespace MvcSample.Data
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
-
+           
             string[] roles =
             {
                 "Admin",
                 "User"
             };
 
-
-            foreach(var role in roles)
+            foreach (var role in roles)
             {
-                if(!await roleManager.RoleExistsAsync(role))
+                if (!await roleManager.RoleExistsAsync(role))
                 {
                     await roleManager.CreateAsync(
                         new IdentityRole(role));
@@ -29,22 +28,31 @@ namespace MvcSample.Data
             string adminEmail = "admin@site.com";
             string adminPassword = "Admin123!";
 
+            var admin = await userManager.FindByEmailAsync(adminEmail);
 
-            if(await userManager.FindByEmailAsync(adminEmail) == null)
+            if (admin == null)
             {
-                var admin = new IdentityUser
+                admin = new IdentityUser
                 {
-                    UserName = adminEmail,
+                    UserName = "Admin",
                     Email = adminEmail,
                     EmailConfirmed = true
                 };
 
-
                 await userManager.CreateAsync(
                     admin,
                     adminPassword);
+            }
+            else
+            {
+                admin.UserName = "Admin";
+                admin.EmailConfirmed = true;
 
+                await userManager.UpdateAsync(admin);
+            }
 
+            if (!await userManager.IsInRoleAsync(admin, "Admin"))
+            {
                 await userManager.AddToRoleAsync(
                     admin,
                     "Admin");
@@ -53,22 +61,31 @@ namespace MvcSample.Data
             string userEmail = "user@site.com";
             string userPassword = "User123!";
 
+            var user = await userManager.FindByEmailAsync(userEmail);
 
-            if(await userManager.FindByEmailAsync(userEmail) == null)
+            if (user == null)
             {
-                var user = new IdentityUser
+                user = new IdentityUser
                 {
-                    UserName = userEmail,
+                    UserName = "Default User",
                     Email = userEmail,
                     EmailConfirmed = true
                 };
 
-
                 await userManager.CreateAsync(
                     user,
                     userPassword);
+            }
+            else
+            {
+                user.UserName = "Default User";
+                user.EmailConfirmed = true;
 
+                await userManager.UpdateAsync(user);
+            }
 
+            if (!await userManager.IsInRoleAsync(user, "User"))
+            {
                 await userManager.AddToRoleAsync(
                     user,
                     "User");

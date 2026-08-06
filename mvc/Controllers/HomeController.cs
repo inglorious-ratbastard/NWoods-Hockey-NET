@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcSample.Models;
@@ -30,6 +31,42 @@ namespace MvcSample.Controllers {
 
     public IActionResult About() {
       return View();
+    }
+
+    [Authorize]
+    public IActionResult Main()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Profile()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Games()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Teams()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Scores()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Stats()
+    {
+        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

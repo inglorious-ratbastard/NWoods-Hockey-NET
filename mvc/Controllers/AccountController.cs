@@ -16,27 +16,47 @@ public class AccountController : Controller
         _signInManager = signInManager;
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction(
+            "Index",
+            "Home");
+    }
+
   public IActionResult LoginRegister()
   {
       return View(new LoginRegisterViewModel());
   }
 
-  [HttpPost]
-  public async Task<IActionResult> Login(LoginRegisterViewModel model)
-  {
-      var result = await _signInManager.PasswordSignInAsync(
-          model.LoginEmail,
-          model.LoginPassword,
-          model.RememberMe,
-          false);
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginRegisterViewModel model)
+    {
+        var user = await _userManager.FindByEmailAsync(model.LoginEmail);
 
-      if (result.Succeeded)
-          return RedirectToAction("Index", "Home");
+        if (user == null)
+        {
+            ModelState.AddModelError("", "Invalid login.");
+            return View("LoginRegister", model);
+        }
 
-      ModelState.AddModelError("", "Invalid login.");
+        var result = await _signInManager.PasswordSignInAsync(
+            user.UserName,
+            model.LoginPassword,
+            model.RememberMe,
+            false);
 
-      return View("LoginRegister", model);
-  }
+        if (result.Succeeded)
+        {
+            return RedirectToAction("Main", "Home");
+        }
+
+        ModelState.AddModelError("", "Invalid login.");
+
+        return View("LoginRegister", model);
+    }
 
   [HttpPost]
   public async Task<IActionResult> Register(LoginRegisterViewModel model)
