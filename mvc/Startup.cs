@@ -39,6 +39,7 @@ namespace MvcSample {
       services.AddDefaultIdentity<IdentityUser>(options =>
       {
           options.SignIn.RequireConfirmedAccount = false;
+           options.User.RequireUniqueEmail = true;
       })
       .AddRoles<IdentityRole>()
       .AddEntityFrameworkStores<ApplicationDbContext>();

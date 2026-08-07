@@ -143,6 +143,10 @@
                 <form asp-controller="Account"
                       asp-action="Register"
                       method="post">
+                    <input asp-for="RegisterUserName"
+                           class="form-control mb-3"
+                           placeholder="Username"
+                           required />
                     <input asp-for="RegisterEmail" class="form-control mb-3" placeholder="Email" required />
                     <input asp-for="RegisterPassword" class="form-control mb-3" placeholder="Password" required />
                     <input asp-for="ConfirmPassword" class="form-control mb-3" placeholder="Confirm Password" required />

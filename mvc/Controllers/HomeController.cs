@@ -14,6 +14,10 @@ namespace MvcSample.Controllers {
 
     [HttpGet]
     public IActionResult Index() {
+      if (User.Identity != null && User.Identity.IsAuthenticated)
+      {
+          return RedirectToAction("Main");
+      }
       return View();
     }
 

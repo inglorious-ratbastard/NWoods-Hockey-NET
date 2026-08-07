@@ -5,13 +5,8 @@ namespace MvcSample.Models.ViewModels
 {
     public class LoginRegisterViewModel
     {
-        [EmailAddress]
-        public string LoginEmail { get; set; }
-
-        [DataType(DataType.Password)]
-        public string LoginPassword { get; set; }
-
-        public bool RememberMe { get; set; }
+        [Required]
+        public string RegisterUserName { get; set; }
 
         [Required]
         [EmailAddress]
@@ -22,7 +17,13 @@ namespace MvcSample.Models.ViewModels
         public string RegisterPassword { get; set; }
 
         [Compare(nameof(RegisterPassword))]
-        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+
+        public string LoginEmail { get; set; }
+
+        public string LoginPassword { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

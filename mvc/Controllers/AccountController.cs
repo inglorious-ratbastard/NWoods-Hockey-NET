@@ -63,8 +63,9 @@ public class AccountController : Controller
   {
       var user = new IdentityUser
       {
-          UserName = model.RegisterEmail,
-          Email = model.RegisterEmail
+          UserName = model.RegisterUserName,
+          Email = model.RegisterEmail,
+          EmailConfirmed = true
       };
 
       var result = await _userManager.CreateAsync(
