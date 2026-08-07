@@ -4,121 +4,203 @@
 
 <style>
     @@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
-    
-body {
-  background-color: #273449;
-  font-family: "Source Sans 3", sans-serif;
-  font-size: 15px;
-}
 
-.list-group, .card {
-  font-weight: 600;
-}
+    body {
+        background-color: #273449;
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 15px;
+    }
 
-.list-group-item {
-    border-bottom: 2px solid rgba(0, 0, 0, .35);
-}
+    .list-group, .card {
+        font-weight: 600;
+    }
 
-.alert {
-  font-size: 12px;
-}
+    .list-group-item {
+        border-bottom: 2px solid rgba(0, 0, 0, .35);
+    }
 
-.leader-list .list-group-item {
-    border-bottom: 1px solid rgba(0, 0, 0, .45) !important;
-}
+    .alert {
+        font-size: 12px;
+    }
 
-.leader-list .list-group-item:last-child {
-    border-bottom: none !important;
-}
+    .leader-list .list-group-item {
+        border-bottom: 1px solid rgba(0, 0, 0, .45) !important;
+    }
+
+    .leader-list .list-group-item:last-child {
+        border-bottom: none !important;
+    }
+
+  @@media (max-width: 576px) {
+    body {
+      padding-bottom: 30px !important;
+    }
+  }
 </style>
 
 <div class="container text-center mb-5">
-     <h6 class="mt-4" style="color: white;">Welcome to the Northwoods League Dashboard</h6>
-    
+
+    <h6 class="mt-4 text-light">
+        Welcome to the Northwoods League Dashboard
+    </h6>
+
     <div class="row mt-3 pb-2 justify-content-center gx-2">
-        <div class="col-5">
-          <h6 class="text-light">Recent Results</h6>
+
+        <div class="col-12 col-md-5 me-lg-5">
+            <h6 class="text-light">Recent Results</h6>
+
             <ul class="list-group list-group-flush text-bolder">
-              <li class="list-group-item list-group-item-action list-group-item-secondary fw-bold">Game Day: @DateTime.Now.ToString("MMMM d, yyyy")</li>
-              <li class="list-group-item list-group-item-action list-group-item-dark">
-                Polar Bears <span class="fw-bold">3</span> - <span class="fw-bold">4</span> Rampage
-              </li>
-              <li class="list-group-item list-group-item-action list-group-item-secondary">
-                Northstars <span class="fw-bold">2</span> - <span class="fw-bold">1</span> Thunder
-              </li>
-              <li class="list-group-item list-group-item-action list-group-item-dark">
-                 Blizzard <span class="fw-bold">6</span> - <span class="fw-bold">3</span> Ice Hawks
-              </li>
-              <li class="list-group-item list-group-item-action list-group-item-secondary">
-                 Rampage <span class="fw-bold">4</span> - <span class="fw-bold">4</span> Polar Bears
-              </li>
-              <li class="list-group-item list-group-item-action list-group-item-dark">
-                 Ice Hawks <span class="fw-bold">3</span> - <span class="fw-bold">2</span> Northstars
-              </li>
+                <li class="list-group-item list-group-item-action list-group-item-secondary fw-bold">
+                    Game Day: @DateTime.Now.ToString("MMMM d, yyyy")
+                </li>
+              
+                <li class="list-group-item list-group-item-action list-group-item-dark">
+                    Polar Bears <span class="fw-bold">3</span> - 
+                    <span class="fw-bold">4</span> Rampage
+                </li>
+
+                <li class="list-group-item list-group-item-action list-group-item-secondary">
+                    Northstars <span class="fw-bold">2</span> - 
+                    <span class="fw-bold">1</span> Thunder
+                </li>
+
+                <li class="list-group-item list-group-item-action list-group-item-dark">
+                    Blizzard <span class="fw-bold">6</span> - 
+                    <span class="fw-bold">3</span> Ice Hawks
+                </li>
+
+                <li class="list-group-item list-group-item-action list-group-item-secondary">
+                    Rampage <span class="fw-bold">4</span> - 
+                    <span class="fw-bold">4</span> Polar Bears
+                </li>
+
+                <li class="list-group-item list-group-item-action list-group-item-dark">
+                    Ice Hawks <span class="fw-bold">3</span> - 
+                    <span class="fw-bold">2</span> Northstars
+                </li>
             </ul>
 
-          <div class="alert alert-primary mt-4 fw-bold" role="alert">
-              <span style="color: red;">Next Game Alert:</span>
-              Check the
-              <a asp-controller="Home"
-                 asp-action="Games"
-                 class="text-warning text-decoration-none">
-                  schedule
-              </a>
-              and support your local hockey players!
-          </div>
-
-          <p class="text-light text-center small mt-2 px-3 opacity-75">
-            All statistics, standings, scores, and league information are updated regularly from an external source. This website provides a convenient reference for players, families, and fans but is not responsible for errors, omissions, scheduling changes, or outdated information. Please verify official league details directly with <a class="text-info" style="filter: brightness(130%);" href="https://northwoodsice.net/">Northwoods Ice and Golf Center</a>.
-          </p>
-        </div> 
-        
-        <div class="col-5 ms-5">
-          <h6 class="text-light mb-1">Current Standings</h6>
-            <div class="card border-info w-100 mb-3 text-bg-light opacity-50">
-              <div class="card-body">
-                <h6 class="card-title text-decoration-underline">League Leaders</h6>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span><strong>AHL:</strong> Ice Wolves</span>
-                    <span>18-2-1 (37 pts)</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span><strong>ARL:</strong> Blizzard</span>
-                    <span>15-4-2 (32 pts)</span></li>
-                  <li class="list-group-item">
-                    <span><strong>BHL:</strong> Polar Bears</span>
-                    <span>13-5-3 (29 pts)</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span><strong>RRHL:</strong> Rampage</span>
-                    <span>11-7-2 (24 pts)</span>
-                  </li>
-                </ul>
-              </div>
+            <div class="alert alert-primary mt-4 fw-bold" role="alert">
+                <span style="color:red;">
+                    Next Game Alert:
+                </span>
+                Check the
+                <a asp-controller="Home"
+                   asp-action="Games"
+                   class="text-warning text-decoration-none">
+                    schedule
+                </a>
+                and support your local hockey players!
             </div>
-          
-          <div class="card border-light w-100 text-bg-secondary opacity-50">
-              <div class="card-body">
-                  <h6 class="card-title text-decoration-underline">Current Streaks</h6>
-                  <ul class="list-group list-group-flush leader-list">
-                      <li class="list-group-item bg-secondary text-light border-secondary">
-                        <span class="fw-bold text-dark">Longest Win Streak:</span> Ice Wolves (6)
-                      </li>
-                      <li class="list-group-item bg-secondary text-light border-secondary">
-                        <span class="fw-bold text-dark">Longest Unbeaten:</span> Blizzard (8)
-                      </li>
-                      <li class="list-group-item bg-secondary text-light border-secondary">
-                        <span class="fw-bold text-dark">Hottest Team:</span> Rampage (4 Straight)
-                      </li>
-                      <li class="list-group-item bg-secondary text-light border-secondary">
-                        <span class="fw-bold text-dark">Best Home Record:</span> Polar Bears (9-1)
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          
+
+            <p id="legality" class="text-light text-center small mt-2 mb-0 mb-md-3 px-3 opacity-75">
+                All statistics, standings, scores, and league information are updated regularly from an external source. This website provides a convenient reference for players, families, and fans but is not responsible for errors, omissions, scheduling changes, or outdated information. Please verify official league details directly with 
+                <a class="text-info"
+                   style="filter: brightness(130%);"
+                   href="https://northwoodsice.net/">
+                    Northwoods Ice and Golf Center.
+                </a>
+            </p>
+
         </div>
+
+        <div class="col-12 col-md-5 mt-4 mt-md-0">
+          
+            <h6 class="text-light mb-1">
+                Current Standings
+            </h6>
+
+            <div class="card border-info w-100 mb-3 text-bg-light opacity-50">
+                <div class="card-body">
+                    <h6 class="card-title text-decoration-underline">
+                        League Leaders
+                    </h6>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>AHL:</strong> Ice Wolves
+                            </span>
+                            <span>
+                                18-2-1 (37 pts)
+                            </span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>ARL:</strong> Blizzard
+                            </span>
+                            <span>
+                                15-4-2 (32 pts)
+                            </span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>BHL:</strong> Polar Bears
+                            </span>
+                            <span>
+                                13-5-3 (29 pts)
+                            </span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>
+                                <strong>RRHL:</strong> Rampage
+                            </span>
+                            <span>
+                                11-7-2 (24 pts)
+                            </span>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="card border-light w-100 text-bg-secondary opacity-50">
+                <div class="card-body">
+
+                    <h6 class="card-title text-decoration-underline">
+                        Current Streaks
+                    </h6>
+
+                    <ul class="list-group list-group-flush leader-list">
+                        <li class="list-group-item bg-secondary text-light border-secondary">
+                            <span class="fw-bold text-dark">
+                                Longest Win Streak:
+                            </span>
+                            Ice Wolves (6)
+                        </li>
+
+                        <li class="list-group-item bg-secondary text-light border-secondary">
+                            <span class="fw-bold text-dark">
+                                Longest Unbeaten:
+                            </span>
+                            Blizzard (8)
+                        </li>
+
+                        <li class="list-group-item bg-secondary text-light border-secondary">
+                            <span class="fw-bold text-dark">
+                                Hottest Team:
+                            </span>
+                            Rampage (4 Straight)
+                        </li>
+
+                        <li class="list-group-item bg-secondary text-light border-secondary">
+                            <span class="fw-bold text-dark">
+                                Best Home Record:
+                            </span>
+                            Polar Bears (9-1)
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    
+
 </div>
